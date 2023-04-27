@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border.xml" value="0.1845" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_button.xml" value="0.1845" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_custom.xml" value="0.1255" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_left.xml" value="0.1845" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_top.xml" value="0.1255" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1845" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/activity.xml" value="0.18" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/asdf.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/border.xml" value="0.3432971014492754" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_a.xml" value="0.33559782608695654" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_b.xml" value="0.33559782608695654" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_c.xml" value="0.33559782608695654" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_d.xml" value="0.33559782608695654" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_e.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_f.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_g.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_h.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_i.xml" value="0.16621376811594202" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

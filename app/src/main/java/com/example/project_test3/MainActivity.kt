@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        //안녕하세요
+        //안녕하세요!!!
         // 1. 페이지 데이터를 로드
         val list = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD(), FragmentE()
             , FragmentF(), FragmentG(), FragmentH(), FragmentI())

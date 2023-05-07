@@ -4,13 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border.xml" value="0.1845" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_all.xml" value="0.2165" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_button.xml" value="0.1845" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_custom.xml" value="0.1255" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_left.xml" value="0.1845" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/border_top.xml" value="0.1255" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1845" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/activity.xml" value="0.18" />
-        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/asdf.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/border.xml" value="0.3432971014492754" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_a.xml" value="0.33559782608695654" />
@@ -22,6 +23,8 @@
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_g.xml" value="0.16621376811594202" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_h.xml" value="0.16621376811594202" />
         <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_i.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/fragment_reservation.xml" value="0.18" />
+        <entry key="..\:/Users/msm16/AndroidStudioProjects/Project_test3/app/src/main/res/layout/reservation_bottomsheet.xml" value="0.16945288753799392" />
       </map>
     </option>
   </component>

@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".FragmentD">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/border_custom"></LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="스타일리스트입니다."
-        android:textSize="34sp" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/border_all">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_res1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="예약 날짜"
+                android:textColor="#000000"
+                app:backgroundTint="#00FFFFFF"
+                app:strokeColor="#00000000"
+                app:strokeWidth="1dp"
+                android:stateListAnimator="@null"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_res2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="예약 시간"
+                android:textColor="#000000"
+                app:backgroundTint="#00FFFFFF"
+                app:strokeColor="#00000000"
+                app:strokeWidth="1dp"
+                android:stateListAnimator="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

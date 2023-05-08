@@ -15,7 +15,7 @@ class FragmentReservation : Fragment(){
         super.onAttach(context)
         if(context is MainActivity) mainActivity = context
     }
-
+//ㅎㅇ
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

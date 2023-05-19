@@ -1,10 +1,12 @@
 package com.example.project_test3
 
 import android.animation.ObjectAnimator
+import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -12,16 +14,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.project_test3.databinding.ActivityMainBinding
+import com.example.project_test3.databinding.FragmentDBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy{ActivityMainBinding.inflate(layoutInflater)}
+    private val job = SupervisorJob()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -64,11 +69,14 @@ class MainActivity : AppCompatActivity() {
         binding.button1.setOnClickListener{
             binding.tabLayout.selectTab(binding.tabLayout.getTabAt(3))
             binding.mainScrollView.scrollTo(0,binding.viewPager.top-binding.headerView.height)
+            job.cancel()
+            binding.button1
+                .setStrokeColor(ColorStateList.valueOf(Color.parseColor("#4CAF50")))
         }
 
 
         //코루틴, 무한 반복이어서 수정 필요
-        GlobalScope.launch{
+        GlobalScope.launch(job){
             while(true){
                 //예약 버튼 색깔 변경
                 binding.button1
@@ -80,9 +88,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
     fun reservation(){
-        val bottomSheet = com.example.project_test3.BottomSheetDialog()
+        val bottomSheet = FragmentReservation()
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+    }
+    fun test(){
+        val fragmentD: FragmentD = FragmentD()
+    }
+    fun reservationData(index:Int, data1:String, data2:String){
+        if(index == 1){
+            val bundle: Bundle = Bundle()
+            bundle.putString("data1", data1)
+            bundle.putString("data2", data2)
+            val fragmentD: FragmentD = FragmentD()
+            fragmentD.arguments = bundle
+        }
     }
 }
 

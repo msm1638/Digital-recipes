@@ -1,14 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".FragmentReservation">
 
-
-    <CalendarView
-        android:id="@+id/calendarView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/border_bottom"
+        >
+
+        <TextView
+            android:id="@+id/calendartext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="날짜 선택"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <ImageButton
+            android:id="@+id/layoutBtn01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_up"
+            android:clickable="false"
+            android:background="@android:color/transparent"
+            android:layout_gravity="right"
+            android:textSize="22sp" />
+    </com.google.android.material.card.MaterialCardView>
+    <LinearLayout
+        android:id="@+id/layoutDetail01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/border_custom"
+            />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/border_bottom"
+        >
+
+        <TextView
+            android:id="@+id/timetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="시간 선택"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <ImageButton
+            android:id="@+id/layoutBtn02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:src="@drawable/arrow_up"
+            android:clickable="false"
+            android:background="@android:color/transparent"
+            android:layout_gravity="right"
+            android:textSize="22sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/layoutDetail02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity ="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            >
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="12:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="13:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="14:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="15:00"
+            android:layout_marginRight="5dp"/>
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity ="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            >
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="16:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="17:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="18:00"
+            android:layout_marginRight="5dp"/>
+
+        <RadioButton
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:checked="false"
+            android:id="@+id/radioButton8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radio_button"
+            android:textColor="@drawable/selector_radio_text"
+            android:button="@null"
+            android:textAlignment="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="19:00"
+            android:layout_marginRight="5dp"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear_buttonView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/border_top"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="취소"
+            android:textColor="#000000"
+            app:backgroundTint="#00FFFFFF"
+            app:strokeColor="#D7D7D7"
+            app:strokeWidth="1dp"
+            android:stateListAnimator="@null"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:stateListAnimator="@null"
+            android:text="적용"
+            android:textColor="#000000"
+            app:strokeColor="#D7D7D7"
+            app:backgroundTint="#00FFFFFF"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

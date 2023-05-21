@@ -6,10 +6,13 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -62,9 +65,7 @@ class MainActivity : AppCompatActivity() {
                 //탭 선택 시 화면 이동
                 binding.mainScrollView.scrollTo(0,binding.viewPager.top-binding.headerView.height)
             }
-
         })
-
         // 예약 버튼 누를 시 화면 이동
         binding.button1.setOnClickListener{
             binding.tabLayout.selectTab(binding.tabLayout.getTabAt(3))
@@ -72,10 +73,10 @@ class MainActivity : AppCompatActivity() {
             job.cancel()
             binding.button1
                 .setStrokeColor(ColorStateList.valueOf(Color.parseColor("#4CAF50")))
+            val bundle = Bundle()
+            bundle.putString("key", "true")
+            supportFragmentManager.setFragmentResult("guide2", bundle)
         }
-
-
-        //코루틴, 무한 반복이어서 수정 필요
         GlobalScope.launch(job){
             while(true){
                 //예약 버튼 색깔 변경
@@ -88,27 +89,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
-
     fun reservation(){
         val bottomSheet = FragmentReservation()
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
-    fun test(){
-        val fragmentD: FragmentD = FragmentD()
+    fun reservation2(){
+        val transaction: FragmentTransaction = supportFragmentManager
+                .beginTransaction()
+                .add(R.id.frameLayout, FragmentReservation2())
+        transaction.addToBackStack(null).commitAllowingStateLoss()
     }
-    fun reservationData(index:Int, data1:String, data2:String){
-        if(index == 1){
-            val bundle: Bundle = Bundle()
-            bundle.putString("data1", data1)
-            bundle.putString("data2", data2)
-            val fragmentD: FragmentD = FragmentD()
-            fragmentD.arguments = bundle
-        }
+    fun jobCancle(){
+        job.cancel()
+        binding.button1
+            .setStrokeColor(ColorStateList.valueOf(Color.parseColor("#4CAF50")))
     }
 }
 

@@ -44,7 +44,6 @@ class NewScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener {
     }
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
-
         val scrolly = t
 
         if (scrolly > mHeaderInitPosition) {

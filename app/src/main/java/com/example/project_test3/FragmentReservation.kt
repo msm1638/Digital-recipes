@@ -14,14 +14,22 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import com.example.project_test3.databinding.FragmentDBinding
 import com.example.project_test3.databinding.FragmentReservationBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FragmentReservation : BottomSheetDialogFragment() {
     lateinit var binding:FragmentReservationBinding
     lateinit var mainActivity:MainActivity
+    private val job = SupervisorJob()
+    private var job2 = SupervisorJob()
+    private var job3 = SupervisorJob()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is MainActivity) mainActivity = context
@@ -72,6 +80,7 @@ class FragmentReservation : BottomSheetDialogFragment() {
             }
         }
         //캘린더
+
         binding.calendar.setOnDateChangeListener(object : CalendarView.OnDateChangeListener{
             override fun onSelectedDayChange(p0: CalendarView, p1: Int, p2: Int, p3: Int) {
                 sw1 = true
@@ -86,7 +95,10 @@ class FragmentReservation : BottomSheetDialogFragment() {
                     duration = 300
                     rotation(180f)
                 }
-                buttonState(sw1, sw2)
+                job.cancel()
+                binding.layoutDetail01.setStrokeColor(
+                    ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                guide3()
             }
         })
         //시간
@@ -156,6 +168,9 @@ class FragmentReservation : BottomSheetDialogFragment() {
         }
         binding.button1.setOnClickListener{
             dialog?.dismiss()
+            job3.cancel()
+            binding.layoutDetail02.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
         }
         binding.button2.setOnClickListener{
             dialog?.dismiss()
@@ -163,8 +178,25 @@ class FragmentReservation : BottomSheetDialogFragment() {
             bundle.putString("data1", "${binding.calendartext.text}")
             bundle.putString("data2", "${binding.timetext.text}")
             setFragmentResult("requestKey", bundle)
+            job3.cancel()
+            binding.layoutDetail02.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
         }
-
+        setFragmentResultListener("guide3") { key, bundle ->
+            if(bundle.getString("key")=="true") {
+                GlobalScope.launch(job){
+                    while(true){
+                        //예약 버튼 색깔 변경
+                        binding.layoutDetail01.setStrokeColor(
+                            ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                        delay(1000)
+                        binding.layoutDetail01.setStrokeColor(
+                            ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                        delay(1000)
+                    }
+                }
+            }
+        }
         // 팝업 생성 시 전체화면으로 띄우기
         val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         val behavior = BottomSheetBehavior.from<View>(bottomSheet!!)
@@ -183,9 +215,34 @@ class FragmentReservation : BottomSheetDialogFragment() {
     //버튼 상태 바꾸기
     fun buttonState(sw1:Boolean, sw2:Boolean){
         if(sw1==sw2==true){
+            job2.cancel()
+            binding.layoutDetail02.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
             binding.button2.isEnabled = true
-            binding.button2.setStrokeColor(
-                ColorStateList.valueOf(Color.parseColor("#4CAF50")))
+            GlobalScope.launch(job3){
+                while(true){
+                    //예약 버튼 색깔 변경
+                    binding.button2.setStrokeColor(
+                        ColorStateList.valueOf(Color.parseColor("#4CAF50")))
+                    delay(1000)
+                    binding.button2.setStrokeColor(
+                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                    delay(1000)
+                }
+            }
+        }
+    }
+    fun guide3(){
+        GlobalScope.launch(job2){
+            while(true){
+                //예약 버튼 색깔 변경
+                binding.layoutDetail02.setStrokeColor(
+                    ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                delay(1000)
+                binding.layoutDetail02.setStrokeColor(
+                    ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                delay(1000)
+            }
         }
     }
 }

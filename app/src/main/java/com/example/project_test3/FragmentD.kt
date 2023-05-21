@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import com.example.project_test3.databinding.FragmentDBinding
 import kotlinx.coroutines.GlobalScope
@@ -19,9 +20,9 @@ import kotlinx.coroutines.launch
 class FragmentD : Fragment(){
     lateinit var binding:FragmentDBinding
     lateinit var mainActivity:MainActivity
-    val text1 = "예약 날짜"
-    val text2 = "예약 시간"
     private val job = SupervisorJob()
+    private val job2 = SupervisorJob()
+    private var sw = false
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is MainActivity) mainActivity = context
@@ -33,40 +34,75 @@ class FragmentD : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDBinding.inflate(inflater, container,false)
-//        binding.buttonRes1.text = this.arguments?.getString("data1")
-//        binding.buttonRes2.text = this.arguments?.getString("data2")
-
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setFragmentResultListener("guide2") { key, bundle ->
+            if(bundle.getString("key")=="true") {
+                GlobalScope.launch(job){
+                    while(true){
+                        //예약 버튼 색깔 변경
+                        binding.layoutRes.setBackgroundResource(R.drawable.border_all2)
+                        delay(1000)
+                        binding.layoutRes.setBackgroundResource(R.drawable.border_all)
+                        delay(1000)
+                    }
+                }
+            }
+        }
+        binding.buttonRes1.setOnClickListener{
+            mainActivity.reservation()//예약 불러오기
+            val bundle = Bundle()
+            bundle.putString("key", "true")
+            setFragmentResult("guide3", bundle)
+        }
+        binding.buttonRes2.setOnClickListener{
+            mainActivity.reservation()//예약 불러오기
+            val bundle = Bundle()
+            bundle.putString("key", "true")
+            setFragmentResult("guide3", bundle)
+        }
         setFragmentResultListener("requestKey") { key, bundle ->
             getData(bundle.getString("data1"), bundle.getString("data2"))
             job.cancel()
             binding.layoutRes.setBackgroundResource(R.drawable.border_all)
+            guide4()
+            sw = true
+            mainActivity.jobCancle()
         }
-
-        binding.buttonRes1.setOnClickListener{
-            mainActivity.reservation()//예약 불러오기
-        }
-        binding.buttonRes2.setOnClickListener{
-            mainActivity.reservation()//예약 불러오기
-        }
-        GlobalScope.launch(job){
-            while(true){
-                //예약 버튼 색깔 변경
-                binding.layoutRes.setBackgroundResource(R.drawable.border_all2)
-                delay(1000)
-                binding.layoutRes.setBackgroundResource(R.drawable.border_all)
-                delay(1000)
+        binding.button3.setOnClickListener{
+            mainActivity.reservation2()
+            job2.cancel()
+            binding.button3.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+            if(sw){
+                val bundle = Bundle()
+                bundle.putString("data1", "${binding.buttonRes1.text}")
+                bundle.putString("data2", "${binding.buttonRes2.text}")
+                setFragmentResult("requestKey2", bundle)
             }
         }
+
+
+
 
     }
     fun getData(data1:String?, data2:String?){
         binding.buttonRes1.text = data1
         binding.buttonRes2.text = data2
+    }
+    fun guide4(){
+        GlobalScope.launch(job2){
+            while(true){
+                //예약 버튼 색깔 변경
+                binding.button3.setStrokeColor(
+                    ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                delay(1000)
+                binding.button3.setStrokeColor(
+                    ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                delay(1000)
+            }
+        }
     }
 }

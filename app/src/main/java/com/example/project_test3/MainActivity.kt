@@ -29,7 +29,7 @@ import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy{ActivityMainBinding.inflate(layoutInflater)}
-    private val job = SupervisorJob()
+    private var job = SupervisorJob()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("key", "true")
             supportFragmentManager.setFragmentResult("guide2", bundle)
         }
+        job.cancel()
+        job = SupervisorJob()
         GlobalScope.launch(job){
             while(true){
                 //예약 버튼 색깔 변경
@@ -99,7 +101,13 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.frameLayout, FragmentReservation2())
         transaction.addToBackStack(null).commitAllowingStateLoss()
     }
-    fun jobCancle(){
+    fun reservation3(){
+        val transaction: FragmentTransaction = supportFragmentManager
+            .beginTransaction()
+            .add(R.id.frameLayout, FragmentReservation3())
+        transaction.addToBackStack(null).commitAllowingStateLoss()
+    }
+    fun jobCancel(){
         job.cancel()
         binding.button1
             .setStrokeColor(ColorStateList.valueOf(Color.parseColor("#4CAF50")))

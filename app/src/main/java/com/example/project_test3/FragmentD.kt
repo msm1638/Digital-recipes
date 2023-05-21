@@ -20,8 +20,8 @@ import kotlinx.coroutines.launch
 class FragmentD : Fragment(){
     lateinit var binding:FragmentDBinding
     lateinit var mainActivity:MainActivity
-    private val job = SupervisorJob()
-    private val job2 = SupervisorJob()
+    private var job = SupervisorJob()
+    private var job2 = SupervisorJob()
     private var sw = false
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,6 +40,8 @@ class FragmentD : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         setFragmentResultListener("guide2") { key, bundle ->
             if(bundle.getString("key")=="true") {
+                job.cancel()
+                job = SupervisorJob()
                 GlobalScope.launch(job){
                     while(true){
                         //예약 버튼 색깔 변경
@@ -69,7 +71,7 @@ class FragmentD : Fragment(){
             binding.layoutRes.setBackgroundResource(R.drawable.border_all)
             guide4()
             sw = true
-            mainActivity.jobCancle()
+            mainActivity.jobCancel()
         }
         binding.button3.setOnClickListener{
             mainActivity.reservation2()
@@ -93,6 +95,8 @@ class FragmentD : Fragment(){
         binding.buttonRes2.text = data2
     }
     fun guide4(){
+        job2.cancel()
+        job2 = SupervisorJob()
         GlobalScope.launch(job2){
             while(true){
                 //예약 버튼 색깔 변경

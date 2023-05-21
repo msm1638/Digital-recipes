@@ -39,15 +39,18 @@ class FragmentJ : Fragment() {
 
         setFragmentResultListener("guide6") { key, bundle ->
             if(bundle.getString("key")=="true") {
-                GlobalScope.launch(job){
-                    while(true){
-                        //예약 버튼 색깔 변경
-                        binding.checkBox1.setBackgroundResource(R.drawable.border_all2)
-                        delay(1000)
-                        binding.checkBox1.setBackgroundResource(R.drawable.border_all)
-                        delay(1000)
-                    }
-                }
+                guide6()
+            }
+        }
+        setFragmentResultListener("guide7") { key, bundle ->
+            if(bundle.getString("key")=="true") {
+                guide6()
+            }
+        }
+        setFragmentResultListener("guide8") { key, bundle2 ->
+            if(bundle2.getString("key")=="true") {
+                job.cancel()
+                binding.checkBox1.setBackgroundResource(R.drawable.border_not)
             }
         }
         binding.checkBox1.setOnCheckedChangeListener { _, isCheked ->
@@ -80,11 +83,26 @@ class FragmentJ : Fragment() {
         bundle.putString("key", "add")
         bundle.putString("number", "${i}")
         setFragmentResult("requestKey3", bundle)
+        job.cancel()
+        binding.checkBox1.setBackgroundResource(R.drawable.border_not)
     }
     fun uncheck(i:Int){
         val bundle = Bundle()
         bundle.putString("key", "remove")
         bundle.putString("number", "${i}")
         setFragmentResult("requestKey3", bundle)
+    }
+    fun guide6(){
+        job.cancel()
+        job = SupervisorJob()
+        GlobalScope.launch(job){
+            while(true){
+                //예약 버튼 색깔 변경
+                binding.checkBox1.setBackgroundResource(R.drawable.border_all2)
+                delay(1000)
+                binding.checkBox1.setBackgroundResource(R.drawable.border_not)
+                delay(1000)
+            }
+        }
     }
 }

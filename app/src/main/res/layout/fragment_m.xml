@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="13dp"
-                android:text="14,900원"
+                android:text="14900원"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:layout_marginStart="30dp"/>
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="13dp"
-                android:text="24,900원"
+                android:text="24900원"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:layout_marginStart="30dp"/>

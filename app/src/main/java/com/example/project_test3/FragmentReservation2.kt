@@ -21,11 +21,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 
 class FragmentReservation2 : Fragment() {
     lateinit var binding: FragmentReservation2Binding
     lateinit var mainActivity:MainActivity
-    private val job = SupervisorJob()
+    private var job = SupervisorJob()
     private var job2 = SupervisorJob()
     private var job3 = SupervisorJob()
     private var job4 = SupervisorJob()
@@ -137,7 +138,30 @@ class FragmentReservation2 : Fragment() {
                 }
             }
         }
-
+        binding.button1.setOnClickListener {
+            mainActivity.reservation3()
+            job4.cancel()
+            binding.button1.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+            val bundle = Bundle()
+            var menu:String = ""
+            var price:String = ""
+            var priceAll:Int = 0
+            for(i in 0..arr.size-1 step 1){
+                menu += "${arr[i].get("name")}"
+                price += "${arr[i].get("price")}원"
+                priceAll += "${arr[i].get("price")}".toInt()
+                if(i==arr.size-1) break
+                menu += "\n"
+                price += "\n"
+            }
+            Log.d("태그", ""+priceAll)
+            bundle.putString("day", "${binding.calendartext.text} ${binding.timetext.text}")
+            bundle.putString("menu", "${menu}")
+            bundle.putString("price", "${price}")
+            bundle.putString("priceAll", "${priceAll}원")
+            setFragmentResult("requestKey4", bundle)
+        }
 
         setFragmentResultListener("requestKey3") { key, bundle ->
             if(bundle.getString("key") == "add"){
@@ -158,7 +182,7 @@ class FragmentReservation2 : Fragment() {
                     "14" -> arr.add(map14)
                 }
                 sw3=true
-                Log.d("태그", ""+arr+sw3)
+                //Log.d("태그", ""+arr+sw3)
             }
             else if(bundle.getString("key") == "remove"){
                 when(bundle.getString("number")){
@@ -177,8 +201,13 @@ class FragmentReservation2 : Fragment() {
                     "13" -> arr.remove(map13)
                     "14" -> arr.remove(map14)
                 }
-                if(arr.size == 0) sw3 = false
-                Log.d("태그", ""+arr+sw3)
+                if(arr.size == 0) {
+                    sw3 = false
+                    val bundle = Bundle()
+                    bundle.putString("key", "true")
+                    setFragmentResult("guide7", bundle)
+                }
+                //Log.d("태그", ""+arr+sw3)
             }
             buttonState(sw1, sw2, sw3)
         }
@@ -200,6 +229,8 @@ class FragmentReservation2 : Fragment() {
             setFragmentResult("guide6", bundle)
         }
         //캘린더
+        job.cancel()
+        job = SupervisorJob()
         GlobalScope.launch(job){
             while(true){
                 //예약 버튼 색깔 변경
@@ -307,12 +338,12 @@ class FragmentReservation2 : Fragment() {
         setFragmentResult("guide6", bundle)
     }
     fun buttonState(sw1:Boolean, sw2:Boolean, sw3:Boolean){
-
         if(sw1==sw2==sw3==true){
             //프래그먼트 job.cancel()해야함
             binding.button1.isEnabled = true
-            //버튼 색상 변경 추가 필요@@@
-            job4.start()
+            binding.button1.setBackgroundColor(Color.parseColor("#2AB849"))
+            job4.cancel()
+            job4 = SupervisorJob()
             GlobalScope.launch(job4){
                 while(true){
                     //예약 버튼 색깔 변경
@@ -327,13 +358,19 @@ class FragmentReservation2 : Fragment() {
         }
         else if(sw1==sw2==true and sw3==false) {
             binding.button1.isEnabled = false
-            //버튼 원래 색으로 변경 추가 필요@@@
+            job4.cancel()
+            binding.button1.setBackgroundColor(Color.parseColor("#BCBCBC"))
+            binding.button1.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
         }
+
     }
     fun guide5(){
         job.cancel()
         binding.layoutDetail01.setStrokeColor(
             ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+        job2.cancel()
+        job2 = SupervisorJob()
         GlobalScope.launch(job2){
             while(true){
                 //예약 버튼 색깔 변경

@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class FragmentReservation : BottomSheetDialogFragment() {
     lateinit var binding:FragmentReservationBinding
     lateinit var mainActivity:MainActivity
-    private val job = SupervisorJob()
+    private var job = SupervisorJob()
     private var job2 = SupervisorJob()
     private var job3 = SupervisorJob()
     override fun onAttach(context: Context) {
@@ -184,6 +184,8 @@ class FragmentReservation : BottomSheetDialogFragment() {
         }
         setFragmentResultListener("guide3") { key, bundle ->
             if(bundle.getString("key")=="true") {
+                job.cancel()
+                job = SupervisorJob()
                 GlobalScope.launch(job){
                     while(true){
                         //예약 버튼 색깔 변경
@@ -219,6 +221,8 @@ class FragmentReservation : BottomSheetDialogFragment() {
             binding.layoutDetail02.setStrokeColor(
                 ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
             binding.button2.isEnabled = true
+            job3.cancel()
+            job3 = SupervisorJob()
             GlobalScope.launch(job3){
                 while(true){
                     //예약 버튼 색깔 변경
@@ -233,6 +237,8 @@ class FragmentReservation : BottomSheetDialogFragment() {
         }
     }
     fun guide3(){
+        job2.cancel()
+        job2 = SupervisorJob()
         GlobalScope.launch(job2){
             while(true){
                 //예약 버튼 색깔 변경

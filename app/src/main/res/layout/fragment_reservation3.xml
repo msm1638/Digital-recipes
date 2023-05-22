@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentReservation2"
+    tools:context=".FragmentReservation3"
     android:background="#FFFFFF"
     android:clickable="true">
 

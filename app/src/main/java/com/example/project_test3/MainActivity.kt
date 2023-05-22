@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -106,6 +107,22 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .add(R.id.frameLayout, FragmentReservation3())
         transaction.addToBackStack(null).commitAllowingStateLoss()
+    }
+    fun reservation4(){
+        val transaction: FragmentTransaction = supportFragmentManager
+            .beginTransaction()
+            .add(R.id.frameLayout, FragmentReservation4())
+        transaction.addToBackStack(null).commitAllowingStateLoss()
+    }
+    fun reservation5(){
+        val builder = AlertDialog.Builder(this)
+            .setTitle("예약 성공!")
+            .setMessage("임의 예약을 완료했습니다. 실전 예약에 도전해보세요!")
+            .setPositiveButton("확인", DialogInterface.OnClickListener{dialog, which->
+                Toast.makeText(this, "종료",
+                Toast.LENGTH_LONG).show()
+            })
+        builder.show()
     }
     fun jobCancel(){
         job.cancel()

@@ -49,6 +49,7 @@ class FragmentReservation3 : Fragment() {
             binding.text2.text = bundle.getString("price")
             binding.text3.text = bundle.getString("priceAll")
         }
+        buttonState2()
         binding.checkBox1.setOnCheckedChangeListener { compoundButton, isCheked ->
             if (isCheked) {
                 sw1 = true
@@ -69,32 +70,62 @@ class FragmentReservation3 : Fragment() {
             }
             buttonState(sw1, sw2)
         }
+        binding.button1.setOnClickListener {
+            mainActivity.reservation4()
+            job4.cancel()
+            binding.button1.setStrokeColor(
+                ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+            val bundle = Bundle()
+            bundle.putString("day", "${binding.textRes.text}")
+            bundle.putString("menu", "${binding.text1.text}")
+            bundle.putString("price", "${binding.text2.text}")
+            bundle.putString("priceAll", "${binding.text3.text}")
+            setFragmentResult("requestKey5", bundle)
+        }
     }
     fun buttonState(sw1:Boolean, sw2:Boolean){
         if(sw1 or sw2){
-            //프래그먼트 job.cancel()해야함
             binding.button1.isEnabled = true
             binding.button1.setBackgroundColor(Color.parseColor("#2AB849"))
             job4.cancel()
             job4 = SupervisorJob()
+            binding.checkBox1.setBackgroundResource(R.drawable.border_all3)
+            binding.checkBox2.setBackgroundResource(R.drawable.border_all3)
+            if(sw1) binding.checkBox1.setBackgroundColor(Color.parseColor("#4CAF50"))
+            else if(sw2) binding.checkBox2.setBackgroundColor(Color.parseColor("#4CAF50"))
             GlobalScope.launch(job4){
                 while(true){
                     //예약 버튼 색깔 변경
                     binding.button1.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
                     delay(1000)
                     binding.button1.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                        ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
                     delay(1000)
                 }
             }
         }
         else {
             binding.button1.isEnabled = false
-            job4.cancel()
+            buttonState2()
             binding.button1.setBackgroundColor(Color.parseColor("#BCBCBC"))
             binding.button1.setStrokeColor(
                 ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+        }
+    }
+    fun buttonState2(){
+        job4.cancel()
+        job4 = SupervisorJob()
+        GlobalScope.launch(job4){
+            while(true){
+                //예약 버튼 색깔 변경
+                binding.checkBox1.setBackgroundResource(R.drawable.border_all2)
+                binding.checkBox2.setBackgroundResource(R.drawable.border_all3)
+                delay(1000)
+                binding.checkBox1.setBackgroundResource(R.drawable.border_all3)
+                binding.checkBox2.setBackgroundResource(R.drawable.border_all2)
+                delay(1000)
+            }
         }
     }
 }

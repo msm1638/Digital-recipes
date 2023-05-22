@@ -339,7 +339,6 @@ class FragmentReservation2 : Fragment() {
     }
     fun buttonState(sw1:Boolean, sw2:Boolean, sw3:Boolean){
         if(sw1==sw2==sw3==true){
-            //프래그먼트 job.cancel()해야함
             binding.button1.isEnabled = true
             binding.button1.setBackgroundColor(Color.parseColor("#2AB849"))
             job4.cancel()
@@ -348,10 +347,10 @@ class FragmentReservation2 : Fragment() {
                 while(true){
                     //예약 버튼 색깔 변경
                     binding.button1.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
+                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
                     delay(1000)
                     binding.button1.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                        ColorStateList.valueOf(Color.parseColor("#D7D7D7")))
                     delay(1000)
                 }
             }

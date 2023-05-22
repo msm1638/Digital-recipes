@@ -227,10 +227,10 @@ class FragmentReservation : BottomSheetDialogFragment() {
                 while(true){
                     //예약 버튼 색깔 변경
                     binding.button2.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#4CAF50")))
+                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
                     delay(1000)
                     binding.button2.setStrokeColor(
-                        ColorStateList.valueOf(Color.parseColor("#FFE91E63")))
+                        ColorStateList.valueOf(Color.parseColor("#4CAF50")))
                     delay(1000)
                 }
             }
